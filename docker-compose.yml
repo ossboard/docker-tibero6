@@ -1,0 +1,21 @@
+version: '3'
+services:
+  tibero:
+    image: dimensigon/tibero
+    container_name: tibero-kbs
+    hostname: tibero
+    domainname: ossboard.com
+    ports:
+      - 8629:8629
+    volumes:
+      - ./share:/share
+      - ./setting/license.xml:/home/tibero/tibero6/license/license.xml
+      - ./setting/bashrc:/root/.bashrc
+      - ./database:/home/tibero/tibero6/database
+    stdin_open: true
+    networks:
+      - tibero-net
+networks:
+  tibero-net:
+    driver: bridge
+
